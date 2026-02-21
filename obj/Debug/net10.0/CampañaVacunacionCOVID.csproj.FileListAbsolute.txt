@@ -1,0 +1,14 @@
+C:\Users\Admin\CampañaVacunacionCOVID\bin\Debug\net10.0\CampañaVacunacionCOVID.exe
+C:\Users\Admin\CampañaVacunacionCOVID\bin\Debug\net10.0\CampañaVacunacionCOVID.deps.json
+C:\Users\Admin\CampañaVacunacionCOVID\bin\Debug\net10.0\CampañaVacunacionCOVID.runtimeconfig.json
+C:\Users\Admin\CampañaVacunacionCOVID\bin\Debug\net10.0\CampañaVacunacionCOVID.dll
+C:\Users\Admin\CampañaVacunacionCOVID\bin\Debug\net10.0\CampañaVacunacionCOVID.pdb
+C:\Users\Admin\CampañaVacunacionCOVID\obj\Debug\net10.0\CampañaVacunacionCOVID.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\CampañaVacunacionCOVID\obj\Debug\net10.0\CampañaVacunacionCOVID.AssemblyInfoInputs.cache
+C:\Users\Admin\CampañaVacunacionCOVID\obj\Debug\net10.0\CampañaVacunacionCOVID.AssemblyInfo.cs
+C:\Users\Admin\CampañaVacunacionCOVID\obj\Debug\net10.0\CampañaVacunacionCOVID.csproj.CoreCompileInputs.cache
+C:\Users\Admin\CampañaVacunacionCOVID\obj\Debug\net10.0\CampañaVacunacionCOVID.dll
+C:\Users\Admin\CampañaVacunacionCOVID\obj\Debug\net10.0\refint\CampañaVacunacionCOVID.dll
+C:\Users\Admin\CampañaVacunacionCOVID\obj\Debug\net10.0\CampañaVacunacionCOVID.pdb
+C:\Users\Admin\CampañaVacunacionCOVID\obj\Debug\net10.0\CampañaVacunacionCOVID.genruntimeconfig.cache
+C:\Users\Admin\CampañaVacunacionCOVID\obj\Debug\net10.0\ref\CampañaVacunacionCOVID.dll
