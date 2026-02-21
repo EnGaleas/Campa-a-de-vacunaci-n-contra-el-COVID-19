@@ -1,103 +1,111 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
-class Program
+class VacunacionCovid
 {
     static void Main()
     {
-        /*
-        ============================================================
-        CAMPAÑA NACIONAL DE VACUNACIÓN COVID-19
-        ============================================================
-
-        El programa crea un conjunto de 500 ciudadanos.
-        Luego se generan dos subconjuntos:
-        - 75 vacunados con Pfizer
-        - 75 vacunados con AstraZeneca
-
-        Se aplican operaciones de teoría de conjuntos:
-        - Unión
-        - Intersección
-        - Diferencia
-        - Complemento
-
-        Finalmente se muestran los listados solicitados.
-        ============================================================
-        */
+        // Crear objeto Random para seleccionar ciudadanos aleatoriamente
+        Random random = new Random();
 
         // ===============================
-        // 1. CONJUNTO TOTAL DE CIUDADANOS
+        // 1. CREAR UNIVERSO DE 500 CIUDADANOS
         // ===============================
-
-        HashSet<string> ciudadanos = new HashSet<string>();
-
-        string[] nombres = {
-            "Martha","Hector","Carlos","Andrea","Luis","Sofia","Daniel","Maria","Jose","Camila",
-            "Fernando","Lucia","Miguel","Valeria","Pedro","Diana","Jorge","Paola","Ricardo","Elena",
-            "Manuel","Gabriela","Andres","Rosa","Julian","Natalia","Diego","Patricia","Raul","Monica",
-            "Eduardo","Carmen","Francisco","Angela","Roberto","Mariana","Victor","Lorena","Alberto","Claudia"
-        };
-
-        string[] apellidos = {
-            "Pozo","Galeas","Perez","Gomez","Rodriguez","Sanchez","Torres","Flores","Vargas","Castro",
-            "Herrera","Mendoza","Romero","Ortega","Medina","Silva","Rojas","Bravo","Suarez","Ibarra",
-            "Navarro","Campos","Lopez","Paredes","Acosta","Delgado","Vega","Reyes","Espinoza","Rivera",
-            "Morales","Alvarez","Cabrera","Salinas","Calderon","Benitez","Guerrero","Zambrano","Chavez","Cordova"
-        };
-
-        int contador = 1;
-
-        // Genera combinaciones únicas hasta completar 500 ciudadanos
-        foreach (var nombre in nombres)
+        HashSet<string> universo = new HashSet<string>(); // HashSet para evitar duplicados
+        for (int i = 1; i <= 500; i++)
         {
-            foreach (var apellido in apellidos)
-            {
-                if (contador <= 500)
-                {
-                    ciudadanos.Add(contador + ". " + nombre + " " + apellido);
-                    contador++;
-                }
-            }
+            universo.Add($"Ciudadano {i}"); // Se agregan ciudadanos con numeración
         }
 
         // ===============================
-        // 2. SUBCONJUNTOS DE VACUNACIÓN (MEZCLADOS)
+        // 2. CREAR CONJUNTO DE 75 VACUNADOS CON PFIZER
         // ===============================
-
-        Random rnd = new Random();
-
-        HashSet<string> pfizer = ciudadanos.OrderBy(x => rnd.Next()).Take(75).ToHashSet();
-        HashSet<string> astraZeneca = ciudadanos.OrderBy(x => rnd.Next()).Take(75).ToHashSet();
+        HashSet<string> pfizer = GenerarVacunados(universo, 75, random);
 
         // ===============================
-        // 3. OPERACIONES DE CONJUNTOS
+        // 3. CREAR CONJUNTO DE 75 VACUNADOS CON ASTRAZENECA
         // ===============================
-
-        var ambasDosis = pfizer.Intersect(astraZeneca).ToHashSet();
-        var soloPfizer = pfizer.Except(astraZeneca).ToHashSet();
-        var soloAstra = astraZeneca.Except(pfizer).ToHashSet();
-        var vacunados = pfizer.Union(astraZeneca).ToHashSet();
-        var noVacunados = ciudadanos.Except(vacunados).ToHashSet();
+        HashSet<string> astraZeneca = GenerarVacunados(universo, 75, random);
 
         // ===============================
-        // 4. RESULTADOS SOLICITADOS
+        // 4. OPERACIONES DE TEORÍA DE CONJUNTOS
         // ===============================
 
-        Console.WriteLine("\nCIUDADANOS QUE NO SE HAN VACUNADO:\n");
-        foreach (var c in noVacunados)
-            Console.WriteLine(c);
+        // a) Unión: todos los vacunados (Pfizer + AstraZeneca)
+        HashSet<string> vacunados = new HashSet<string>(pfizer);
+        vacunados.UnionWith(astraZeneca);
 
-        Console.WriteLine("\nCIUDADANOS QUE HAN RECIBIDO AMBAS DOSIS:\n");
-        foreach (var c in ambasDosis)
-            Console.WriteLine(c);
+        // b) Intersección: ciudadanos que recibieron ambas dosis
+        HashSet<string> ambas = new HashSet<string>(pfizer);
+        ambas.IntersectWith(astraZeneca);
 
-        Console.WriteLine("\nCIUDADANOS QUE SOLO HAN RECIBIDO PFIZER:\n");
-        foreach (var c in soloPfizer)
-            Console.WriteLine(c);
+        // c) Diferencia: ciudadanos que solo recibieron Pfizer
+        HashSet<string> soloPfizer = new HashSet<string>(pfizer);
+        soloPfizer.ExceptWith(astraZeneca);
 
-        Console.WriteLine("\nCIUDADANOS QUE SOLO HAN RECIBIDO ASTRAZENECA:\n");
-        foreach (var c in soloAstra)
-            Console.WriteLine(c);
+        // d) Diferencia: ciudadanos que solo recibieron AstraZeneca
+        HashSet<string> soloAstra = new HashSet<string>(astraZeneca);
+        soloAstra.ExceptWith(pfizer);
+
+        // e) Complemento: ciudadanos que no se han vacunado
+        HashSet<string> noVacunados = new HashSet<string>(universo);
+        noVacunados.ExceptWith(vacunados);
+
+        // ===============================
+        // 5. REPORTE GENERAL (totales)
+        // ===============================
+        Console.WriteLine("======================================");
+        Console.WriteLine("        REPORTE CAMPAÑA VACUNACIÓN");
+        Console.WriteLine("======================================");
+        Console.WriteLine($"Total ciudadanos: {universo.Count}");
+        Console.WriteLine($"Vacunados Pfizer: {pfizer.Count}");
+        Console.WriteLine($"Vacunados AstraZeneca: {astraZeneca.Count}");
+        Console.WriteLine($"Ambas dosis: {ambas.Count}");
+        Console.WriteLine($"Solo Pfizer: {soloPfizer.Count}");
+        Console.WriteLine($"Solo AstraZeneca: {soloAstra.Count}");
+        Console.WriteLine($"No vacunados: {noVacunados.Count}");
+
+        // ===============================
+        // 6. LISTADOS DETALLADOS
+        // ===============================
+        MostrarListado("CIUDADANOS SOLO PFIZER", soloPfizer);
+        MostrarListado("CIUDADANOS SOLO ASTRAZENECA", soloAstra);
+        MostrarListado("CIUDADANOS CON AMBAS DOSIS", ambas);
+        MostrarListado("CIUDADANOS NO VACUNADOS", noVacunados);
+
+        Console.WriteLine("\nProceso finalizado correctamente.");
+    }
+
+    // ===============================
+    // MÉTODO PARA GENERAR VACUNADOS ALEATORIOS
+    // ===============================
+    static HashSet<string> GenerarVacunados(HashSet<string> universo, int cantidad, Random random) 
+    {
+        List<string> lista = new List<string>(universo); // Convertir HashSet a lista para indexar
+        HashSet<string> conjunto = new HashSet<string>(); // Para almacenar los vacunados sin duplicados
+
+        while (conjunto.Count < cantidad) // Se repite hasta completar la cantidad requerida
+        {
+            int indice = random.Next(lista.Count); // Selección aleatoria
+            conjunto.Add(lista[indice]); // Agregar ciudadano al conjunto de vacunados
+        }
+
+        return conjunto; // Retornar conjunto generado
+    }
+
+    // ===============================
+    // MÉTODO PARA MOSTRAR LISTADOS CON NUMERACIÓN
+    // ===============================
+    static void MostrarListado(string titulo, HashSet<string> conjunto)
+    {
+        Console.WriteLine($"\n===== {titulo} =====");
+        int contador = 1;
+
+        // Recorrer cada ciudadano en el conjunto
+        foreach (var ciudadano in conjunto)
+        {
+            Console.WriteLine($"{contador}. {ciudadano}");
+            contador++;
+        }
     }
 }

@@ -12,3 +12,4 @@ C:\Users\Admin\CampañaVacunacionCOVID\obj\Debug\net10.0\refint\CampañaVacunaci
 C:\Users\Admin\CampañaVacunacionCOVID\obj\Debug\net10.0\CampañaVacunacionCOVID.pdb
 C:\Users\Admin\CampañaVacunacionCOVID\obj\Debug\net10.0\CampañaVacunacionCOVID.genruntimeconfig.cache
 C:\Users\Admin\CampañaVacunacionCOVID\obj\Debug\net10.0\ref\CampañaVacunacionCOVID.dll
+C:\Users\Admin\CampañaVacunacionCOVID\obj\Debug\net10.0\CampañaVacunacionCOVID.sourcelink.json

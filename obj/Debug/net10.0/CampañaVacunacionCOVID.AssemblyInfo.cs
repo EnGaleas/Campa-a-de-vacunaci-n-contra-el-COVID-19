@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CampañaVacunacionCOVID")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+173f37374c2a233643181b1f1b9a50a23f8fec78")]
 [assembly: System.Reflection.AssemblyProductAttribute("CampañaVacunacionCOVID")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CampañaVacunacionCOVID")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
